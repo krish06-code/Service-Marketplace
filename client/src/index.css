@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #080c14;
+  --bg-surface: #111827;
+  --bg-surface-2: #192337;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #9caabd;
+  --accent: #4f7cff;
+  --accent-2: #22c7d9;
+  --success: #32d583;
+  --border: #263449;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --radius: 0.75rem;
+  --shadow-accent: 0 0 40px rgba(79,124,255,0.15);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border);
+}
+
+@layer components {
+  .glass {
+    @apply bg-bg-surface/70 backdrop-blur-md border border-border-color;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-accent-2;
+  }
+  
+  .card {
+    @apply bg-bg-surface border border-border-color rounded-xl shadow-sm transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors flex items-center justify-center;
+  }
+  
+  .btn-secondary {
+    @apply border border-accent text-accent hover:bg-accent/10 font-medium rounded-lg transition-colors flex items-center justify-center;
+  }
+  
+  .input-field {
+    @apply w-full bg-bg-surface-2 border border-border-color text-text-primary rounded-lg px-4 py-2 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all;
+  }
+}
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
