@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
 import Avatar from '../ui/Avatar';
+import { getAssetURL } from '../../services/api';
 
 const DashboardLayout = ({ children, sidebarItems = [], title = 'Dashboard' }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,7 +33,7 @@ const DashboardLayout = ({ children, sidebarItems = [], title = 'Dashboard' }) =
           {/* User info at bottom */}
           <div className="p-4 border-t border-border-color">
             <div className="flex items-center gap-3">
-              <Avatar src={user?.avatar ? `${import.meta.env.VITE_SOCKET_URL}${user.avatar}` : null} fallback={user?.name} size="sm" />
+              <Avatar src={getAssetURL(user?.avatar)} fallback={user?.name} size="sm" />
               <div className="min-w-0">
                 <p className="text-sm font-medium text-text-primary truncate">{user?.name}</p>
                 <p className="text-xs text-text-muted capitalize">{user?.role}</p>
@@ -61,7 +62,7 @@ const DashboardLayout = ({ children, sidebarItems = [], title = 'Dashboard' }) =
               <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-danger rounded-full" />
             )}
           </Link>
-          <Avatar src={user?.avatar ? `${import.meta.env.VITE_SOCKET_URL}${user.avatar}` : null} fallback={user?.name} size="sm" />
+          <Avatar src={getAssetURL(user?.avatar)} fallback={user?.name} size="sm" />
         </header>
 
         {/* Page content */}

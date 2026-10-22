@@ -4,15 +4,13 @@ const User = require('../models/User');
 const Message = require('../models/Message');
 const Conversation = require('../models/Conversation');
 
+const { corsOptions } = require('../config/cors');
+
 let io;
 
 const initSocket = (httpServer) => {
   io = socketIo(httpServer, {
-    cors: {
-      origin: process.env.CLIENT_URL || 'http://localhost:5173',
-      methods: ['GET', 'POST'],
-      credentials: true
-    }
+    cors: corsOptions
   });
 
   io.use(async (socket, next) => {

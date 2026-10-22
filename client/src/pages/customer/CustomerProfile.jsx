@@ -4,7 +4,7 @@ import DashboardLayout from '../../components/layout/DashboardLayout';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import Avatar from '../../components/ui/Avatar';
-import { userAPI, authAPI } from '../../services/api';
+import { userAPI, authAPI, getAssetURL } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 
@@ -77,7 +77,7 @@ const CustomerProfile = () => {
         <div className="card p-6">
           <h2 className="text-lg font-semibold text-text-primary mb-4">Profile Photo</h2>
           <div className="flex items-center gap-4">
-            <Avatar src={user?.avatar ? `${import.meta.env.VITE_SOCKET_URL}${user.avatar}` : null} fallback={user?.name} size="xl" />
+            <Avatar src={getAssetURL(user?.avatar)} fallback={user?.name} size="xl" />
             <div>
               <Button variant="secondary" size="sm" isLoading={uploading} onClick={() => fileRef.current?.click()}>
                 <Upload className="h-4 w-4 mr-1" /> Upload Photo

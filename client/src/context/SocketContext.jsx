@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { useAuth } from './AuthContext';
+import { getSocketURL } from '../services/api';
 
 const SocketContext = createContext();
 
@@ -12,7 +13,7 @@ export const SocketProvider = ({ children }) => {
     let newSocket;
     if (isAuthenticated) {
       const token = localStorage.getItem('token');
-      newSocket = io(import.meta.env.VITE_SOCKET_URL, {
+      newSocket = io(getSocketURL(), {
         auth: { token }
       });
       setSocket(newSocket);

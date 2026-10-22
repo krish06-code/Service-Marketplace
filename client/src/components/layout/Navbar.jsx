@@ -5,6 +5,7 @@ import { useNotifications } from '../../context/NotificationContext';
 import { Bell, Zap, Menu, X, ChevronDown, User, LogOut, LayoutDashboard } from 'lucide-react';
 import Button from '../ui/Button';
 import Avatar from '../ui/Avatar';
+import { getAssetURL } from '../../services/api';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -77,7 +78,7 @@ const Navbar = () => {
                 </button>
                 <div className="relative" ref={dropdownRef}>
                   <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-bg-surface-2 transition-colors">
-                    <Avatar src={user?.avatar ? `${import.meta.env.VITE_SOCKET_URL}${user.avatar}` : null} fallback={user?.name} size="sm" />
+                    <Avatar src={getAssetURL(user?.avatar)} fallback={user?.name} size="sm" />
                     <span className="text-sm font-medium text-text-primary max-w-[100px] truncate">{user?.name?.split(' ')[0]}</span>
                     <ChevronDown className={`h-4 w-4 text-text-muted transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                   </button>

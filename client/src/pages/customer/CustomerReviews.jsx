@@ -4,7 +4,7 @@ import DashboardLayout from '../../components/layout/DashboardLayout';
 import Avatar from '../../components/ui/Avatar';
 import RatingStars from '../../components/ui/RatingStars';
 import EmptyState from '../../components/ui/EmptyState';
-import { reviewAPI } from '../../services/api';
+import { reviewAPI, getAssetURL } from '../../services/api';
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: 'Overview', href: '/dashboard' },
@@ -47,7 +47,7 @@ const CustomerReviews = () => {
           {reviews.map(r => (
             <div key={r._id} className="card p-5 flex gap-4">
               <Avatar
-                src={r.provider?.user?.avatar ? `${import.meta.env.VITE_SOCKET_URL}${r.provider.user.avatar}` : null}
+                src={getAssetURL(r.provider?.user?.avatar)}
                 fallback={r.provider?.user?.name}
                 size="md"
               />

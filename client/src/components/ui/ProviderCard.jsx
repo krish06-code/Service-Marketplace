@@ -3,12 +3,13 @@ import { MapPin, Star, CheckCircle, IndianRupee } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import Button from './Button';
+import { getAssetURL } from '../../services/api';
 
 const ProviderCard = ({ provider, showBookButton = true }) => {
   const navigate = useNavigate();
   const user = provider.user || {};
   const location = provider.location || {};
-  const avatarSrc = user.avatar ? `${import.meta.env.VITE_SOCKET_URL}${user.avatar}` : null;
+  const avatarSrc = getAssetURL(user.avatar);
 
   return (
     <div className="card p-5 flex flex-col gap-4 group hover:border-accent/40 hover:shadow-[0_0_20px_rgba(79,124,255,0.08)] transition-all">

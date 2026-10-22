@@ -1,7 +1,30 @@
 import axios from 'axios';
 
+export const getBaseURL = () => {
+  let url = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').trim();
+  url = url.replace(/\/+$/, '');
+  if (!url.endsWith('/api')) {
+    url = `${url}/api`;
+  }
+  return url;
+};
+
+export const getSocketURL = () => {
+  if (import.meta.env.VITE_SOCKET_URL) {
+    return import.meta.env.VITE_SOCKET_URL.trim().replace(/\/+$/, '');
+  }
+  return getBaseURL().replace(/\/api$/, '');
+};
+
+export const getAssetURL = (path) => {
+  if (!path) return null;
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const socketBase = getSocketURL();
+  return `${socketBase}${path.startsWith('/') ? '' : '/'}${path}`;
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: getBaseURL(),
   withCredentials: true,
 });
 

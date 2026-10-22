@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Star, MapPin, CheckCircle, Clock, IndianRupee, Heart, ArrowLeft, Briefcase } from 'lucide-react';
 import PublicLayout from '../components/layout/PublicLayout';
@@ -8,7 +8,7 @@ import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import { SkeletonCard } from '../components/ui/Skeleton';
 import EmptyState from '../components/ui/EmptyState';
-import { providerAPI, reviewAPI, userAPI } from '../services/api';
+import { providerAPI, reviewAPI, userAPI, getAssetURL } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
@@ -79,7 +79,7 @@ const ProviderProfilePage = () => {
           <div className="flex flex-col sm:flex-row gap-6">
             <div className="relative shrink-0">
               <Avatar
-                src={provUser.avatar ? `${import.meta.env.VITE_SOCKET_URL}${provUser.avatar}` : null}
+                src={getAssetURL(provUser.avatar)}
                 fallback={provUser.name}
                 size="xl"
               />
