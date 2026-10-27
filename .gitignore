@@ -13,6 +13,8 @@ client/.env.*
 server/.env
 server/.env.*
 !server/.env.example
+*serviceAccount*.json
+server/config/serviceAccountKey.json
 
 # Build outputs
 client/dist/

@@ -81,7 +81,8 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response?.status === 401 && window.location.pathname !== '/login') {
+    const isAuthEndpoint = error.config?.url?.includes('/auth/');
+    if (error.response?.status === 401 && !isAuthEndpoint && window.location.pathname !== '/login') {
       localStorage.removeItem('token');
       window.location.href = '/login';
     }
@@ -92,6 +93,7 @@ api.interceptors.response.use(
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
+  googleAuth: (idToken, role) => api.post('/auth/google', { idToken, role }),
   logout: () => api.post('/auth/logout'),
   getMe: () => api.get('/auth/me'),
   updatePassword: (data) => api.put('/auth/update-password', data),
