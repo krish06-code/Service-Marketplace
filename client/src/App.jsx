@@ -6,6 +6,8 @@ import { PageLoader } from './components/ui/LoadingSpinner';
 // ── Public Pages ─────────────────────────────────────────────
 const LandingPage        = lazy(() => import('./pages/public/LandingPage'));
 const ServicesPage       = lazy(() => import('./pages/ServicesPage'));
+const ProfessionalsPage  = lazy(() => import('./pages/ProfessionalsPage'));
+const HowItWorksPage     = lazy(() => import('./pages/HowItWorksPage'));
 const ProviderProfilePage= lazy(() => import('./pages/ProviderProfilePage'));
 
 // ── Auth Pages ───────────────────────────────────────────────
@@ -67,7 +69,9 @@ const App = () => (
         {/* ── Public ── */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/providers" element={<ServicesPage />} />
+        <Route path="/how-it-works" element={<HowItWorksPage />} />
+        <Route path="/professionals" element={<ProfessionalsPage />} />
+        <Route path="/providers" element={<ProfessionalsPage />} />
         <Route path="/providers/:id" element={<ProviderProfilePage />} />
 
         {/* ── Auth ── */}

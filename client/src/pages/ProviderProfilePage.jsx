@@ -165,7 +165,7 @@ const ProviderProfilePage = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-success font-bold">â‚¹{svc.price}</div>
+                        <div className="text-accent font-bold">₹{svc.price}</div>
                         <div className="text-text-muted text-xs">{svc.pricingType?.replace('_', ' ')}</div>
                       </div>
                     </div>
@@ -210,7 +210,7 @@ const ProviderProfilePage = () => {
                     <div key={day} className="flex items-center justify-between text-sm">
                       <span className="text-text-muted capitalize">{day.slice(0, 3)}</span>
                       {info.isAvailable ? (
-                        <span className="text-text-primary text-xs">{info.startTime} â€“ {info.endTime}</span>
+                        <span className="text-text-primary text-xs">{info.startTime} – {info.endTime}</span>
                       ) : (
                         <span className="text-text-muted text-xs">Closed</span>
                       )}

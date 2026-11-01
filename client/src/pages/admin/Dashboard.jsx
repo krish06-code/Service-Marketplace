@@ -14,17 +14,28 @@ export const adminSidebarItems = [
   { icon: Star, label: 'Reviews', href: '/admin/reviews' },
 ];
 
-const StatCard = ({ icon: Icon, label, value, color = 'accent' }) => (
-  <div className="card p-5 flex items-center gap-4">
-    <div className={`h-12 w-12 rounded-xl bg-${color}/10 border border-${color}/20 flex items-center justify-center shrink-0`}>
-      <Icon className={`h-6 w-6 text-${color}`} />
+const colorMap = {
+  accent: { bg: 'bg-accent/10 border-accent/20', text: 'text-accent' },
+  success: { bg: 'bg-emerald-50 border-emerald-200', text: 'text-emerald-600' },
+  warning: { bg: 'bg-amber-50 border-amber-200', text: 'text-amber-600' },
+  danger: { bg: 'bg-rose-50 border-rose-200', text: 'text-rose-600' },
+  'purple-400': { bg: 'bg-purple-50 border-purple-200', text: 'text-purple-600' },
+};
+
+const StatCard = ({ icon: Icon, label, value, color = 'accent' }) => {
+  const style = colorMap[color] || colorMap.accent;
+  return (
+    <div className="card p-5 flex items-center gap-4">
+      <div className={`h-12 w-12 rounded-xl ${style.bg} border flex items-center justify-center shrink-0`}>
+        <Icon className={`h-6 w-6 ${style.text}`} />
+      </div>
+      <div>
+        <p className="text-2xl font-bold text-text-primary">{value ?? '—'}</p>
+        <p className="text-text-muted text-sm">{label}</p>
+      </div>
     </div>
-    <div>
-      <p className="text-2xl font-bold text-text-primary">{value ?? '—'}</p>
-      <p className="text-text-muted text-sm">{label}</p>
-    </div>
-  </div>
-);
+  );
+};
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

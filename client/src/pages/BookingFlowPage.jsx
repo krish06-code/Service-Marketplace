@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CheckCircle, ArrowLeft, ArrowRight, Calendar, Clock, MapPin, IndianRupee, Truck } from 'lucide-react';
 import { providerAPI, bookingAPI } from '../services/api';
@@ -136,9 +136,9 @@ const BookingFlowPage = () => {
                     >
                       <div>
                         <p className="font-medium text-text-primary">{svc.title}</p>
-                        <p className="text-text-muted text-sm">{svc.duration} min Â· {svc.pricingType?.replace('_', ' ')}</p>
+                        <p className="text-text-muted text-sm">{svc.duration} min · {svc.pricingType?.replace('_', ' ')}</p>
                       </div>
-                      <div className="text-success font-bold">â‚¹{svc.price}</div>
+                      <div className="text-accent font-bold">₹{svc.price}</div>
                     </button>
                   ))}
                 </div>
@@ -218,7 +218,7 @@ const BookingFlowPage = () => {
                   <div className="flex justify-between text-sm"><span className="text-text-muted flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />Date</span><span className="text-text-primary font-medium">{new Date(selected.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}</span></div>
                   <div className="flex justify-between text-sm"><span className="text-text-muted flex items-center gap-1"><Clock className="h-3.5 w-3.5" />Time</span><span className="text-text-primary font-medium">{selected.slot?.time}</span></div>
                   <div className="flex justify-between text-sm"><span className="text-text-muted flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />Address</span><span className="text-text-primary font-medium text-right max-w-[200px]">{[selected.address.street, selected.address.city].join(', ')}</span></div>
-                  <div className="border-t border-border-color pt-3 flex justify-between"><span className="font-semibold text-text-primary">Total</span><span className="text-success font-bold text-lg">â‚¹{selected.service?.price}</span></div>
+                  <div className="border-t border-border-color pt-3 flex justify-between"><span className="font-semibold text-text-primary">Total</span><span className="text-accent font-bold text-lg">₹{selected.service?.price}</span></div>
                 </div>
 
                 <div className="flex items-center gap-3 p-4 bg-success/5 border border-success/20 rounded-xl">

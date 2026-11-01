@@ -5,60 +5,75 @@ const steps = [
   {
     number: '01',
     icon: Search,
-    title: 'Search',
+    title: 'Search & Discover',
     description: "Tell us what you need — describe your problem or pick from our service categories. We'll find the best matches near you.",
     color: 'text-accent',
-    bg: 'bg-accent/10 border-accent/20',
+    iconBg: 'bg-accent',
+    numberColor: 'text-accent',
+    lineBg: 'from-accent to-orange-300',
   },
   {
     number: '02',
     icon: UserCheck,
-    title: 'Choose',
+    title: 'Choose Your Expert',
     description: 'Browse verified professional profiles. Compare ratings, reviews, experience, pricing and availability to pick the best fit.',
-    color: 'text-accent-2',
-    bg: 'bg-accent-2/10 border-accent-2/20',
+    color: 'text-blue-600',
+    iconBg: 'bg-blue-500',
+    numberColor: 'text-blue-500',
+    lineBg: 'from-orange-300 to-emerald-400',
   },
   {
     number: '03',
     icon: CalendarCheck,
-    title: 'Book',
+    title: 'Book & Relax',
     description: 'Select a convenient time slot, confirm your address, and book instantly. Pay with cash on delivery — no hassle.',
-    color: 'text-success',
-    bg: 'bg-success/10 border-success/20',
+    color: 'text-emerald-600',
+    iconBg: 'bg-emerald-500',
+    numberColor: 'text-emerald-500',
+    lineBg: '',
   },
 ];
 
 const HowItWorksSection = () => (
   <section className="py-24 bg-bg-surface" id="how-it-works">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-14">
-        <span className="inline-block px-3 py-1 rounded-full border border-border-color bg-bg-surface-2 text-xs font-semibold text-accent mb-4 tracking-widest">HOW IT WORKS</span>
-        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Simple. Fast. Reliable.</h2>
-        <p className="text-text-muted max-w-lg mx-auto">Book a verified professional in under 2 minutes, right from your phone or laptop.</p>
+      <div className="text-center mb-16">
+        <span className="section-badge mb-4">How It Works</span>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3 mb-4">
+          Book a Service in 3 Easy Steps
+        </h2>
+        <p className="text-text-muted max-w-xl mx-auto text-lg">
+          Get a verified professional in under 2 minutes, right from your phone or laptop.
+        </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8 relative">
-        {/* Connecting line */}
-        <div className="hidden md:block absolute top-16 left-1/3 right-1/3 h-px bg-gradient-to-r from-accent/30 via-accent-2/30 to-success/30" />
+      <div className="grid md:grid-cols-3 gap-6 lg:gap-10 relative">
+        {/* Connecting dashes (desktop) */}
+        <div className="hidden md:block absolute top-16 left-[38%] right-[38%] h-0.5 bg-gradient-to-r from-accent via-blue-400 to-emerald-500 opacity-30" />
 
         {steps.map((step, i) => {
           const Icon = step.icon;
           return (
-            <div key={i} className="relative flex flex-col items-center text-center gap-5">
-              <div className="relative">
-                <div className={`h-16 w-16 rounded-2xl bg-bg-surface-2 border ${step.bg} flex items-center justify-center shadow-lg`}>
-                  <Icon className={`h-7 w-7 ${step.color}`} />
+            <div key={i} className="relative">
+              <div className="bg-white border border-border-color rounded-2xl p-8 text-center flex flex-col items-center gap-5 shadow-card hover:shadow-card-hover transition-all hover:-translate-y-1">
+                {/* Step number */}
+                <div className="relative">
+                  <div className={`h-16 w-16 rounded-2xl ${step.iconBg} flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.15)]`}>
+                    <Icon className="h-8 w-8 text-white" />
+                  </div>
+                  <span className={`absolute -top-3 -right-3 h-7 w-7 rounded-full bg-white border-2 border-border-color flex items-center justify-center text-xs font-extrabold ${step.numberColor} shadow-sm`}>
+                    {step.number}
+                  </span>
                 </div>
-                <span className={`absolute -top-3 -right-3 h-7 w-7 rounded-full bg-bg-primary border border-border-color flex items-center justify-center text-xs font-bold ${step.color}`}>
-                  {step.number}
-                </span>
+                <div>
+                  <h3 className="text-xl font-extrabold text-text-primary mb-3">{step.title}</h3>
+                  <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-text-primary mb-2">{step.title}</h3>
-                <p className="text-text-muted text-sm leading-relaxed max-w-xs mx-auto">{step.description}</p>
-              </div>
+
+              {/* Mobile arrow */}
               {i < steps.length - 1 && (
-                <div className="md:hidden flex justify-center mt-2">
+                <div className="md:hidden flex justify-center mt-4 mb-2">
                   <ArrowRight className="h-5 w-5 text-text-muted rotate-90" />
                 </div>
               )}

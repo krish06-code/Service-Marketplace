@@ -138,7 +138,7 @@ const Register = () => {
             id="google-register-btn"
             onClick={handleGoogleSignIn}
             disabled={isGoogleLoading || isLoading}
-            className="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl border border-border-color bg-bg-surface-2 hover:bg-bg-surface text-text-primary text-sm font-medium transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed hover:border-accent/40 hover:shadow-[0_0_0_1px_rgba(79,124,255,0.2)]"
+            className="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl border border-border-color bg-bg-surface hover:bg-bg-surface-2 text-text-primary text-sm font-medium transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed hover:border-accent/40 hover:shadow-[0_0_0_1px_rgba(244,91,53,0.2)]"
           >
             {isGoogleLoading ? (
               <span className="h-4 w-4 rounded-full border-2 border-text-muted border-t-accent animate-spin" />

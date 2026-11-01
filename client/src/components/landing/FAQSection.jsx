@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 
 const faqs = [
   {
@@ -31,13 +31,15 @@ const faqs = [
 const FAQItem = ({ q, a }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-border-color rounded-xl overflow-hidden">
+    <div className={`bg-white border rounded-2xl overflow-hidden transition-all duration-200 ${open ? 'border-accent/30 shadow-[0_0_0_2px_rgba(244,91,53,0.06)]' : 'border-border-color hover:border-accent/20'}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-bg-surface-2 transition-colors"
+        className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
       >
-        <span className="font-medium text-text-primary pr-4">{q}</span>
-        <ChevronDown className={`h-5 w-5 text-text-muted shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <span className="font-bold text-text-primary text-sm sm:text-base">{q}</span>
+        <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 transition-all ${open ? 'bg-accent text-white' : 'bg-bg-surface text-text-muted'}`}>
+          <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        </div>
       </button>
       <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}>
         <p className="px-6 pb-5 text-text-muted text-sm leading-relaxed border-t border-border-color pt-4">{a}</p>
@@ -47,12 +49,18 @@ const FAQItem = ({ q, a }) => {
 };
 
 const FAQSection = () => (
-  <section className="py-24 bg-bg-primary" id="faq">
+  <section className="py-24 bg-bg-surface" id="faq">
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-14">
-        <span className="inline-block px-3 py-1 rounded-full border border-border-color bg-bg-surface-2 text-xs font-semibold text-accent mb-4 tracking-widest">FAQ</span>
-        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Frequently Asked Questions</h2>
-        <p className="text-text-muted">Everything you need to know about ServiConnect.</p>
+        <span className="section-badge mb-4">
+          <HelpCircle className="h-3 w-3" /> FAQ
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3 mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-text-muted text-lg">
+          Everything you need to know about ServiConnect.
+        </p>
       </div>
       <div className="flex flex-col gap-3">
         {faqs.map((faq, i) => <FAQItem key={i} {...faq} />)}

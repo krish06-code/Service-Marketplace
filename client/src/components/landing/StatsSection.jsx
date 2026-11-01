@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { TrendingUp, Users, Star, Grid } from 'lucide-react';
 
 const stats = [
-  { value: 10000, suffix: '+', label: 'Services Completed' },
-  { value: 2000, suffix: '+', label: 'Verified Professionals' },
-  { value: 4.8, suffix: '', label: 'Average Rating', isDecimal: true },
-  { value: 25, suffix: '+', label: 'Service Categories' },
+  { value: 10000, suffix: '+', label: 'Services Completed', icon: TrendingUp, color: 'text-accent', bg: 'bg-accent/10' },
+  { value: 2000, suffix: '+', label: 'Verified Professionals', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+  { value: 4.8, suffix: '', label: 'Average Rating', isDecimal: true, icon: Star, color: 'text-amber-600', bg: 'bg-amber-50' },
+  { value: 25, suffix: '+', label: 'Service Categories', icon: Grid, color: 'text-blue-600', bg: 'bg-blue-50' },
 ];
 
 const useCounter = (target, duration = 2000, isDecimal = false) => {
@@ -28,7 +29,7 @@ const useCounter = (target, duration = 2000, isDecimal = false) => {
   return { count, start };
 };
 
-const StatItem = ({ value, suffix, label, isDecimal }) => {
+const StatItem = ({ value, suffix, label, isDecimal, icon: Icon, color, bg }) => {
   const ref = useRef(null);
   const { count, start } = useCounter(value, 2000, isDecimal);
 
@@ -42,19 +43,24 @@ const StatItem = ({ value, suffix, label, isDecimal }) => {
   }, []);
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="text-4xl sm:text-5xl font-extrabold gradient-text mb-2">
-        {isDecimal ? count.toFixed(1) : count.toLocaleString('en-IN')}{suffix}
+    <div ref={ref} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+      <div className={`h-14 w-14 rounded-2xl ${bg} flex items-center justify-center shrink-0`}>
+        <Icon className={`h-7 w-7 ${color}`} />
       </div>
-      <p className="text-text-muted text-sm">{label}</p>
+      <div>
+        <div className={`text-3xl sm:text-4xl font-extrabold mb-0.5 ${color}`}>
+          {isDecimal ? count.toFixed(1) : count.toLocaleString('en-IN')}{suffix}
+        </div>
+        <p className="text-text-muted text-sm font-medium">{label}</p>
+      </div>
     </div>
   );
 };
 
 const StatsSection = () => (
-  <section className="py-20 bg-bg-primary border-y border-border-color">
+  <section className="py-16 bg-bg-surface border-y border-border-color">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
         {stats.map((s, i) => <StatItem key={i} {...s} />)}
       </div>
     </div>

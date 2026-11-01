@@ -172,7 +172,7 @@ const MessagesPage = () => {
               <button
                 onClick={sendMessage}
                 disabled={sending || !newMsg.trim()}
-                className="p-2.5 bg-accent hover:bg-blue-600 text-white rounded-xl disabled:opacity-50 transition-colors"
+                className="p-2.5 bg-accent hover:bg-[#e04d28] text-white rounded-xl disabled:opacity-50 transition-colors shadow-sm"
               >
                 <Send className="h-4 w-4" />
               </button>
